@@ -1,11 +1,1 @@
-# EOG React Visualization
-
-## Libraries
-
-```
-* React
-* TypeScript
-* GraphQL(urql)
-* Material UI
-* Rechart
-```
+Huzzah! Welcome to the EOG React Assessment!
