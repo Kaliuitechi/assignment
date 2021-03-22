@@ -1,6 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Provider, useQuery } from 'urql';
+import {Provider,
+  useQuery,
+  useSubscription,} from 'urql';
 import { Card, makeStyles, Typography } from '@material-ui/core';
 import { actions } from './reducer';
 import { getMetrics, getSelectedMetrics, measurementValue } from './selector';
@@ -33,14 +35,19 @@ const Measurement = (props: { metricName: string }) => {
   const { metricName } = props;
 
   const dispatch = useDispatch();
-  const [result] = useQuery({
+  /*const [result] = useQuery({
     query: queryGetLastKnownMeasurement,
     variables: {
       metricName,
     },
     requestPolicy: 'cache-and-network',
     pollInterval: 1300,
-  });
+  });*/
+
+  const [result] = useSubscription({
+    query: queryGetLastKnownMeasurement,
+    variables: {metricName},
+  })
 
   const { data, error } = result;
   useEffect(() => {
